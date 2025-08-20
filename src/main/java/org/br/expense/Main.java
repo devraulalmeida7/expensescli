@@ -71,6 +71,31 @@ public class Main {
                     }
                     clienteRepository.buscarPorId(id);
 
+                case 3:
+                    System.out.println("Digite seu o ID:");
+                    int idLogin = leitura.nextInt();
+
+                    System.out.println("Digite a sua senha: ");
+                    String senhaLogin = leitura.nextLine();
+
+                    if(senhaLogin == "") {
+                        senhaLogin = leitura.nextLine();
+                    }
+
+                    boolean accountExists = clienteRepository.buscarCadastro(idLogin,senhaLogin);
+
+
+                    if(accountExists) {
+                        System.out.println("Cadastro encontrado!");
+                        break;
+                    }
+                    else {
+                        System.out.println("Seu cadastro não foi encontrado! Preencha os dados novamente");
+                    }
+
+
+
+
 
                 case 0:
                     break;
