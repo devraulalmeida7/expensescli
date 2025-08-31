@@ -20,15 +20,15 @@ public class Main {
 
             System.out.println("Selecione alguma das opções:" );
             System.out.println("1 -Cadastrar conta ");
-            System.out.println("2 - Logar no sistema");
+            System.out.println("2 - Buscar por ID");
+            System.out.println("3 - Logar na conta");
             System.out.println("0 - Sair do sistema");
 
         ClienteRepository clienteRepository = new ClienteRepository();
         SaqueRepository saqueRepository = new SaqueRepository();
         DepositoRepository depositoRepository = new DepositoRepository();
         Cliente cliente = new Cliente();
-
-
+        int idAtual;
 
             int op = leitura.nextInt();
             switch(op) {
@@ -82,11 +82,15 @@ public class Main {
                         senhaLogin = leitura.nextLine();
                     }
 
+
                     boolean accountExists = clienteRepository.buscarCadastro(idLogin,senhaLogin);
 
 
                     if(accountExists) {
                         System.out.println("Cadastro encontrado!");
+                        System.out.println("");
+
+
                         break;
                     }
                     else {
@@ -97,11 +101,11 @@ public class Main {
 
 
 
+
+
                 case 0:
                     break;
             }
-
-
 
 
             // Operações financeiras

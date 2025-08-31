@@ -92,7 +92,9 @@ public class ClienteRepository {
     }
 
 
-    public void buscarPorId(int id)  {
+
+
+    public int buscarPorId(int id)  {
         String sql = "SELECT * FROM cliente WHERE id = ? ";
 
         try(Connection connection = ConfigDatabase.getConnection();
@@ -106,25 +108,23 @@ public class ClienteRepository {
 
            if(rs.next()) {
                int rsID = rs.getInt(1);
-               String rsNome = rs.getString(2);
-
                System.out.println("ID:" + rsID);
-              System.out.println("Nome:" + rsNome);
           }
+
 
         }
 
         catch(SQLException e) {
             e.printStackTrace();
         }
-
+        return id;
     }
 
 
 
 
     public void atualizarSaldo(double saldoUp) {
-        String sqlUpdate = "UPDATE cliente SET saldo = ? ";
+        String sqlUpdate = "UPDATE cliente SET saldo = ? WHERE id = ? ";
 
         try(Connection connectionUp = ConfigDatabase.getConnection();
             PreparedStatement stmtUp = connectionUp.prepareStatement(sqlUpdate)
